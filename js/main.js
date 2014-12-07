@@ -7,6 +7,7 @@ window.onload = function () {
     // Game States
     game.state.add('Boot', tbsps.Boot);
     game.state.add('MainMenu', tbsps.MainMenu);
+    game.state.add('Game', tbsps.Game);
     game.state.add('Preload', tbsps.Preload);
 
 
