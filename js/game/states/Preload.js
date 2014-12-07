@@ -15,6 +15,8 @@ tbsps.Preload.prototype = {
         this.load.image('square', 'assets/images/black-square.png');
         this.load.image('triangle', 'assets/images/black-triangle.png');
 
+        this.load.bitmapFont('squareFont', 'assets/fonts/square8blackborder1/font.png', 'assets/fonts/square8blackborder1/font.fnt');
+
     },
     create: function() {
 

@@ -20,6 +20,14 @@ tbsps.MainMenu.prototype = {
         this.backgroundRotLeft1.alpha = 0.2;
         this.backgroundRotLeft1.autoScroll(-75, 0);
 
+        this.startText = this.game.add.bitmapText(0,0, 'squareFont', 'tap to start', 69);
+        this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
+        this.startText.y = this.game.height / 2 + this.startText.textHeight / 2;
+
+        this.gameTitleText = this.game.add.bitmapText(0,0, 'squareFont', 'The black square parallax scrolling', 69);
+        this.gameTitleText.x = this.game.width / 2 - this.gameTitleText.textWidth / 2;
+        this.gameTitleText.y = this.game.height / 2 + this.startText.y - 128;
+
 
     },
     update: function() {
