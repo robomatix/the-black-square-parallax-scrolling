@@ -12,7 +12,7 @@ tbsps.Preload.prototype = {
 
         this.load.onLoadComplete.add(this.onLoadComplete, this);
 
-        this.load.image('square', 'assets/images/square.png');
+        this.load.image('square', 'assets/images/black-square.png');
 
     },
     create: function() {
