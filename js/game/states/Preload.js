@@ -13,15 +13,24 @@ tbsps.Preload.prototype = {
         this.load.onLoadComplete.add(this.onLoadComplete, this);
 
         this.load.image('square', 'assets/images/black-square.png');
+        this.load.image('triangle', 'assets/images/black-triangle.png');
 
     },
     create: function() {
+
         this.preloadBar.cropEnabled = false;
+
     },
     update: function() {
 
+        if(this.ready === true) {
+            this.state.start('MainMenu');
+        }
+
     },
     onLoadComplete: function() {
+
         this.ready = true;
+
     }
 };
