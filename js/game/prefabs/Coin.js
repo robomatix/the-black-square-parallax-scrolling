@@ -2,7 +2,7 @@ var Coin = function(game, x, y, key, frame) {
   key = 'square';
   Phaser.Sprite.call(this, game, x, y, key, frame);
 
-  this.scale.setTo(0.75);
+  this.scale.setTo(1.25);
   this.anchor.setTo(0.5);
   this.smoothed=false;
 
