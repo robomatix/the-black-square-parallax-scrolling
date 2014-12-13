@@ -5,6 +5,8 @@ tbsps.Game = function() {
     this.coinRate = 700;
     this.coinTimer = 0;
 
+    this.score = 0;
+
 };
 
 tbsps.Game.prototype = {
@@ -64,7 +66,7 @@ tbsps.Game.prototype = {
 
         this.coins = this.game.add.group();
 
-        this.coinSpawnX = this.game.width + 64;
+        this.scoreText = this.game.add.bitmapText(10,10, 'squareFont', 'Score : 0', 36);
 
 
     },
@@ -92,6 +94,8 @@ tbsps.Game.prototype = {
             this.coinTimer = this.game.time.now + this.coinRate;
         }
 
+        this.game.physics.arcade.overlap(this.player, this.coins, this.coinHit, null, this);
+
     },
     createCoin: function() {
         var x = this.game.width;
@@ -106,6 +110,11 @@ tbsps.Game.prototype = {
         coin.reset(x, y);
         coin.revive();
         return coin;
+    },
+    coinHit: function(player, coin) {
+        this.score++;
+        coin.kill();
+        this.scoreText.text = 'Score : ' + this.score;
     }
 
 };
