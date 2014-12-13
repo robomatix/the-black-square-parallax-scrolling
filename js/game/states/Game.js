@@ -72,6 +72,9 @@ tbsps.Game.prototype = {
         this.scoreText = this.game.add.bitmapText(10, 10, 'squareFont', 'Score : 0', 48);
 
         this.tapSound = this.game.add.audio('tap');
+        this.failedGameSound = this.game.add.audio('failedGame');
+
+
 
     },
     update: function () {

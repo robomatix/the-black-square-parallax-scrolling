@@ -8,6 +8,7 @@ Scoreboard.prototype.constructor = Scoreboard;
 Scoreboard.prototype.show = function(score) {
   var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText;
 
+
   bmd = this.game.add.bitmapData(this.game.width, this.game.height);
   bmd.ctx.fillStyle = '#000';
   bmd.ctx.fillRect(0,0, this.game.width, this.game.height);
@@ -53,6 +54,11 @@ Scoreboard.prototype.show = function(score) {
   }
 
     this.tapSound = this.game.add.audio('tap');
+    this.failedGameSound = this.game.add.audio('failedGame');
+
+    this.failedGameSound.play('', 0, true);
+
+
 
   this.game.add.tween(this).to({y: 0}, 1000, Phaser.Easing.Bounce.Out, true).onComplete.add(function () {// http://www.html5gamedevs.com/topic/1651-tween-oncompletecallback/?p=59747 // Doesn't seems to work properly from somewhere else...
       this.game.input.onDown.addOnce(this.restart, this);
