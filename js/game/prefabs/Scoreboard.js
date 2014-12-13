@@ -6,7 +6,7 @@ Scoreboard.prototype = Object.create(Phaser.Group.prototype);
 Scoreboard.prototype.constructor = Scoreboard;
 
 Scoreboard.prototype.show = function(score) {
-  var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, starText;
+  var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText;
 
   bmd = this.game.add.bitmapData(this.game.width, this.game.height);
   bmd.ctx.fillStyle = '#000';
@@ -41,9 +41,9 @@ Scoreboard.prototype.show = function(score) {
   highScoreText.x = this.game.width / 2 - (highScoreText.textWidth / 2);  
   this.add(highScoreText);
 
-  startText = this.game.add.bitmapText(0, 300, 'squareFont', 'Tap to play again !', 64);
-  startText.x = this.game.width / 2 - (startText.textWidth / 2);  
-  this.add(startText);
+  playAgainText = this.game.add.bitmapText(0, 300, 'squareFont', 'Tap to play again !', 64);
+  playAgainText.x = this.game.width / 2 - (playAgainText.textWidth / 2);
+  this.add(playAgainText);
 
   if(isNewHighScore) {
     newHighScoreText = this.game.add.bitmapText(0, 100, 'squareFont', '!!! New High Score !!!', 88);
