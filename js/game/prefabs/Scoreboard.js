@@ -52,12 +52,16 @@ Scoreboard.prototype.show = function(score) {
     this.add(newHighScoreText);
   }
 
-  this.game.add.tween(this).to({y: 0}, 1000, Phaser.Easing.Bounce.Out, true);
+  this.game.add.tween(this).to({y: 0}, 1000, Phaser.Easing.Bounce.Out, true).onComplete.add(function () {
+      this.game.input.onDown.addOnce(this.restart, this);// http://www.html5gamedevs.com/topic/1651-tween-oncompletecallback/?p=59747 // Doesn't seems to work properly from somewhere else...
+  }, this);
 
-  this.game.input.onDown.addOnce(this.restart, this);
+
 
 };
 
 Scoreboard.prototype.restart = function() {
+
   this.game.state.start('Game', true, false);
+
 };
