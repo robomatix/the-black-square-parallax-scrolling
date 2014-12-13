@@ -4,6 +4,7 @@ var Enemy = function(game, x, y, key, frame) {
 
   this.scale.setTo(1.25);
   this.anchor.setTo(0.5);
+  this.tint = 0xFF0000;
   this.smoothed=false;
 
   this.game.physics.arcade.enableBody(this);
