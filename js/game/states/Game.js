@@ -10,8 +10,6 @@ tbsps.Game = function () {
 
     this.score = 0;
 
-
-
 };
 
 tbsps.Game.prototype = {

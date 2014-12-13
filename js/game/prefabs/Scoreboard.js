@@ -19,6 +19,7 @@ Scoreboard.prototype.show = function(score) {
 
   var isNewHighScore = false;
   var highscore = localStorage.getItem('highscore');
+
   if(!highscore || highscore < score) {
     isNewHighScore = true;
     highscore = score;
@@ -45,10 +46,9 @@ Scoreboard.prototype.show = function(score) {
   this.add(startText);
 
   if(isNewHighScore) {
-    newHighScoreText = this.game.add.bitmapText(0, 100, 'squareFont', 'New High Score!', 64);
-    newHighScoreText.tint = 0x4ebef7; // '#4ebef7'
-    newHighScoreText.x = gameoverText.x + gameoverText.textWidth + 40;
-    newHighScoreText.angle = 45;
+    newHighScoreText = this.game.add.bitmapText(0, 100, 'squareFont', '!!! New High Score !!!', 88);
+    newHighScoreText.y = 25;
+    newHighScoreText.x = this.game.width / 2 - (newHighScoreText.textWidth / 2);
     this.add(newHighScoreText);
   }
 
