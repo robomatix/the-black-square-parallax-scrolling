@@ -2,11 +2,15 @@ tbsps.Game = function() {
     this.playerMinAngle = 0;
     this.playerMaxAngle = 18;
 
+    this.coinRate = 700;
+    this.coinTimer = 0;
 
 };
 
 tbsps.Game.prototype = {
     create: function() {
+
+
 
         this.backgroundBottom1 = this.game.add.tileSprite(0, this.game.height-150, this.game.width, 150, 'triangle');
         this.backgroundBottom1.alpha = 0.1;
@@ -25,9 +29,12 @@ tbsps.Game.prototype = {
         this.backgroundRotLeft1.alpha = 0.2;
         this.backgroundRotLeft1.autoScroll(-75, 0);
 
+
+
         this.player = this.add.sprite(200, this.game.height/2, 'square');
         this.player.anchor.setTo(0.5);
         this.player.scale.setTo(2);
+        this.player.smoothed=false;
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.arcade.gravity.y = 400;
@@ -37,6 +44,10 @@ tbsps.Game.prototype = {
         this.game.physics.arcade.enableBody(this.player);
         this.player.body.collideWorldBounds = true;
         this.player.body.bounce.set(0.42);
+
+        this.coins = this.game.add.group();
+
+        this.coinSpawnX = this.game.width + 64;
 
 
     },
@@ -59,5 +70,25 @@ tbsps.Game.prototype = {
             }
         }
 
+        if(this.coinTimer < this.game.time.now) {
+            this.createCoin();
+            this.coinTimer = this.game.time.now + this.coinRate;
+        }
+
+    },
+    createCoin: function() {
+        var x = this.game.width;
+        var y = this.game.rnd.integerInRange(50, this.game.world.height - 50);
+
+        var coin = this.coins.getFirstExists(false);
+        if(!coin) {
+            coin = new Coin(this.game, 0, 0);
+            this.coins.add(coin);
+        }
+
+        coin.reset(x, y);
+        coin.revive();
+        return coin;
     }
+
 };
