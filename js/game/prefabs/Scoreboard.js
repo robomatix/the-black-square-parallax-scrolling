@@ -52,8 +52,10 @@ Scoreboard.prototype.show = function(score) {
     this.add(newHighScoreText);
   }
 
-  this.game.add.tween(this).to({y: 0}, 1000, Phaser.Easing.Bounce.Out, true).onComplete.add(function () {
-      this.game.input.onDown.addOnce(this.restart, this);// http://www.html5gamedevs.com/topic/1651-tween-oncompletecallback/?p=59747 // Doesn't seems to work properly from somewhere else...
+    this.tapSound = this.game.add.audio('tap');
+
+  this.game.add.tween(this).to({y: 0}, 1000, Phaser.Easing.Bounce.Out, true).onComplete.add(function () {// http://www.html5gamedevs.com/topic/1651-tween-oncompletecallback/?p=59747 // Doesn't seems to work properly from somewhere else...
+      this.game.input.onDown.addOnce(this.restart, this);
   }, this);
 
 
@@ -62,6 +64,7 @@ Scoreboard.prototype.show = function(score) {
 
 Scoreboard.prototype.restart = function() {
 
+    this.tapSound.play('', 0, true);
   this.game.state.start('Game', true, false);
 
 };

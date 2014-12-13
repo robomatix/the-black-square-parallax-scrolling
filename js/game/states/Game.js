@@ -73,7 +73,6 @@ tbsps.Game.prototype = {
 
         this.tapSound = this.game.add.audio('tap');
 
-
     },
     update: function () {
         if (this.game.input.activePointer.isDown) {

@@ -49,11 +49,15 @@ tbsps.MainMenu.prototype = {
         this.gameTitleText.x = this.game.width / 2 - this.gameTitleText.textWidth / 2;
         this.gameTitleText.y = this.game.height / 2 + this.startText.y - 128;
 
+        this.tapSound = this.game.add.audio('tap');
+
 
     },
     update: function() {
         if(this.game.input.activePointer.justPressed()) {
+            this.tapSound.play('', 0, true);
             this.game.state.start('Game');
+
         }
     }
 };
