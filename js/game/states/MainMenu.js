@@ -37,6 +37,10 @@ tbsps.MainMenu.prototype = {
         this.backgroundRotLeft1.alpha = 0.2;
         this.backgroundRotLeft1.autoScroll(-75, 0);
 
+        this.teaserText = this.game.add.bitmapText(0,0, 'squareFont', 'Collect the black squares and avoid the red ones !', 69);
+        this.teaserText.x = this.game.width / 2 - this.teaserText.textWidth / 2;
+        this.teaserText.y = 25;
+
         this.startText = this.game.add.bitmapText(0,0, 'squareFont', 'tap to start', 69);
         this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
         this.startText.y = this.game.height / 2 + this.startText.textHeight / 2;

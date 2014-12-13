@@ -69,7 +69,7 @@ tbsps.Game.prototype = {
         this.coins = this.game.add.group();
         this.enemies = this.game.add.group();
 
-        this.scoreText = this.game.add.bitmapText(10, 10, 'squareFont', 'Score : 0', 36);
+        this.scoreText = this.game.add.bitmapText(10, 10, 'squareFont', 'Score : 0', 48);
 
 
     },
