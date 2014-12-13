@@ -5,6 +5,9 @@ tbsps.Game = function() {
     this.coinRate = 700;
     this.coinTimer = 0;
 
+    this.enemyRate = 900;
+    this.enemyTimer = 0;
+
     this.score = 0;
 
 };
@@ -65,8 +68,10 @@ tbsps.Game.prototype = {
         this.player.body.bounce.set(0.42);
 
         this.coins = this.game.add.group();
+        this.enemies = this.game.add.group();
 
         this.scoreText = this.game.add.bitmapText(10,10, 'squareFont', 'Score : 0', 36);
+
 
 
     },
@@ -94,6 +99,11 @@ tbsps.Game.prototype = {
             this.coinTimer = this.game.time.now + this.coinRate;
         }
 
+        if(this.enemyTimer < this.game.time.now) {
+            this.createEnemy();
+            this.enemyTimer = this.game.time.now + this.enemyRate;
+        }
+
         this.game.physics.arcade.overlap(this.player, this.coins, this.coinHit, null, this);
 
     },
@@ -110,6 +120,19 @@ tbsps.Game.prototype = {
         coin.reset(x, y);
         coin.revive();
         return coin;
+    },
+    createEnemy: function() {
+        var x = this.game.width;
+        var y = this.game.rnd.integerInRange(50, this.game.world.height - 50);
+
+        var enemy = this.enemies.getFirstExists(false);
+        if(!enemy) {
+            enemy = new Enemy(this.game, 0, 0);
+            this.enemies.add(enemy);
+        }
+        enemy.reset(x, y);
+        enemy.revive();
+        enemy.tint = 0xFF0000;
     },
     coinHit: function(player, coin) {
         this.score++;
