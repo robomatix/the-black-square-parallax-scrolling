@@ -71,13 +71,22 @@ tbsps.Game.prototype = {
 
         this.scoreText = this.game.add.bitmapText(10, 10, 'squareFont', 'Score : 0', 48);
 
+        this.tapSound = this.game.add.audio('tap');
+
 
     },
     update: function () {
         if (this.game.input.activePointer.isDown) {
             this.player.body.velocity.y -= 25;
 
+            if(!this.tapSound.isPlaying) {
+                this.tapSound.play('', 0, true);
+            }
+        } else {
+            this.tapSound.stop();
         }
+
+
 
         if (this.player.body.velocity.y < 0 || this.game.input.activePointer.isDown) {
             if (this.player.angle > 0) {

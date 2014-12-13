@@ -17,6 +17,8 @@ tbsps.Preload.prototype = {
         this.load.image('triangle', 'assets/images/black-triangle.png');
         this.load.image('halfRound', 'assets/images/black-half-round.png');
 
+        this.load.audio('tap', 'assets/audio/tap.wav');
+
         this.load.bitmapFont('squareFont', 'assets/fonts/square8blackborder1/font.png', 'assets/fonts/square8blackborder1/font.fnt');
 
     },
