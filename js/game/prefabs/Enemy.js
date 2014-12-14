@@ -22,7 +22,7 @@ Enemy.prototype.constructor = Enemy;
 
 Enemy.prototype.onRevived = function() {
 
-  this.body.velocity.x = -400;
+  this.body.velocity.x = -500;
 
 };
 

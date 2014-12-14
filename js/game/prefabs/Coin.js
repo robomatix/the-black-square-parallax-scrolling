@@ -21,7 +21,7 @@ Coin.prototype = Object.create(Phaser.Sprite.prototype);
 Coin.prototype.constructor = Coin;
 
 Coin.prototype.onRevived = function() {
-  this.body.velocity.x = -222;
+  this.body.velocity.x = -250;
 
 
 };
