@@ -42,7 +42,7 @@ Scoreboard.prototype.show = function(score) {
   highScoreText.x = this.game.width / 2 - (highScoreText.textWidth / 2);  
   this.add(highScoreText);
 
-  playAgainText = this.game.add.bitmapText(0, 300, 'squareFont', 'Tap to play again !', 64);
+  playAgainText = this.game.add.bitmapText(0, 300, 'squareFont', 'Click to play again !', 64);
   playAgainText.x = this.game.width / 2 - (playAgainText.textWidth / 2);
   this.add(playAgainText);
 

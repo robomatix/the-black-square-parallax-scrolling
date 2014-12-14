@@ -46,7 +46,7 @@ tbsps.MainMenu.prototype = {
         this.teaserText2.x = this.game.width / 2 - this.teaserText2.textWidth / 2;
         this.teaserText2.y = 94;
 
-        this.startText = this.game.add.bitmapText(0,0, 'squareFont', 'tap to start', 69);
+        this.startText = this.game.add.bitmapText(0,0, 'squareFont', 'Left click on the screen to start', 69);
         this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
         this.startText.y = this.game.height / 2 + this.startText.textHeight / 2;
 
