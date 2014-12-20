@@ -6,7 +6,7 @@ Scoreboard.prototype = Object.create(Phaser.Group.prototype);
 Scoreboard.prototype.constructor = Scoreboard;
 
 Scoreboard.prototype.show = function (score) {
-    var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareTwitterButton;
+    var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareGoogleButton, shareTwitterButton, shareTumblrButton;
 
     this.game.score = score;
 
@@ -54,11 +54,19 @@ Scoreboard.prototype.show = function (score) {
     shareYourScoreText.x = this.game.width / 2 - (shareYourScoreText.textWidth / 2);
     this.add(shareYourScoreText);
 
-    shareTwitterButton = this.game.add.button(this.game.width / 2, 350, 'twitter', this.shareTwitterClicked, this, 1, 0, 0);
+    shareGoogleButton = this.game.add.button(this.game.width / 2 - 60, 365, 'google', this.shareGoogleClicked, this, 1, 0, 0);
+    shareGoogleButton.anchor.setTo(0.5, 0.5);
+    this.add(shareGoogleButton);
+
+    shareTwitterButton = this.game.add.button(this.game.width / 2, 365, 'twitter', this.shareTwitterClicked, this, 1, 0, 0);
     shareTwitterButton.anchor.setTo(0.5, 0.5);
     this.add(shareTwitterButton);
 
-    playAgainText = this.game.add.bitmapText(0, 400, 'squareFont', 'Click here to play again !', 64);
+    shareTumblrButton = this.game.add.button(this.game.width / 2 + 60, 365, 'tumblr', this.shareTumblrClicked, this, 1, 0, 0);
+    shareTumblrButton.anchor.setTo(0.5, 0.5);
+    this.add(shareTumblrButton);
+
+    playAgainText = this.game.add.bitmapText(0, 420, 'squareFont', 'Click here to play again !', 64);
     playAgainText.x = this.game.width / 2 - (playAgainText.textWidth / 2);
     playAgainText.inputEnabled = true;
     playAgainText.events.onInputDown.add(this.restart, this);
@@ -85,12 +93,26 @@ Scoreboard.prototype.restart = function () {
 };
 
 
+Scoreboard.prototype.shareGoogleClicked = function () {
+
+    scoreShared = this.game.score;
+
+    window.open("https://twitter.com/intent/tweet?url=http://myurlgp.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
+
+};
+
 Scoreboard.prototype.shareTwitterClicked = function () {
 
     scoreShared = this.game.score;
 
-    this.game.sharing=true;
+    window.open("https://twitter.com/intent/tweet?url=http://myurltw.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
 
-    window.open("https://twitter.com/intent/tweet?url=http://myurl.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
+};
+
+Scoreboard.prototype.shareTumblrClicked = function () {
+
+    scoreShared = this.game.score;
+
+    window.open("https://twitter.com/intent/tweet?url=http://myurltu.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
 
 };
