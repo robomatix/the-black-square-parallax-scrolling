@@ -15,7 +15,7 @@ tbsps.Game = function () {
 tbsps.Game.prototype = {
     create: function () {
 
-        this.game.scoreboardLancher=false;
+        this.game.scoreboardLancher = false;
 
         this.backgroundTop1 = this.game.add.tileSprite(0, 0, this.game.width, 100, 'halfRound');
         this.backgroundTop1.alpha = 0.1;
@@ -75,19 +75,17 @@ tbsps.Game.prototype = {
         this.collectSound = this.game.add.audio('collect');
 
 
-
     },
     update: function () {
         if (this.game.input.activePointer.isDown) {
             this.player.body.velocity.y -= 25;
 
-            if(!this.tapSound.isPlaying) {
+            if (!this.tapSound.isPlaying) {
                 this.tapSound.play('', 0, true);
             }
         } else {
             this.tapSound.stop();
         }
-
 
 
         if (this.player.body.velocity.y < 0 || this.game.input.activePointer.isDown) {
@@ -125,7 +123,7 @@ tbsps.Game.prototype = {
         this.score = 0;
         this.coinTimer = 0;
         this.enemyTimer = 0;
-        this.scoreboardLancher=false;
+        this.scoreboardLancher = false;
 
     },
     createCoin: function () {
@@ -186,11 +184,12 @@ tbsps.Game.prototype = {
 
         this.enemyTimer = Number.MAX_VALUE;
         this.coinTimer = Number.MAX_VALUE;
-if(!this.game.scoreboardLancher){
-        var scoreboard = new Scoreboard(this.game);
-        scoreboard.show(this.score);
-    this.game.scoreboardLancher=true;
-    }
+        if (!this.game.scoreboardLancher) {
+            var scoreboard = new Scoreboard(this.game);
+            scoreboard.show(this.score);
+            this.game.scoreboardLancher = true;
+
+        }
     }
 
 };

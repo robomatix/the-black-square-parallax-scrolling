@@ -17,6 +17,8 @@ tbsps.Preload.prototype = {
         this.load.image('triangle', 'assets/images/black-triangle.png');
         this.load.image('halfRound', 'assets/images/black-half-round.png');
 
+        this.load.spritesheet('twitter', 'assets/images/rs-icons/twitter.png', 32, 32);
+
         this.load.audio('tap', 'assets/audio/tap.wav');
         this.load.audio('collect', 'assets/audio/collect-coin.wav');
         this.load.audio('failedGame', 'assets/audio/failed-game.wav');
