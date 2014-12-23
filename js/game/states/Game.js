@@ -73,6 +73,8 @@ tbsps.Game.prototype = {
 
         this.tapSound = this.game.add.audio('tap');
         this.collectSound = this.game.add.audio('collect');
+        this.gameMusic = this.game.add.audio('gameMusic');
+        this.gameMusic.play('', 0,1, true);
 
 
     },
@@ -166,6 +168,8 @@ tbsps.Game.prototype = {
 
     },
     enemyHit: function (player, enemy) {
+
+        this.gameMusic.stop();
 
         player.body.velocity.x = 0;
         enemy.body.velocity.x = 0;

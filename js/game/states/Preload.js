@@ -10,8 +10,6 @@ tbsps.Preload.prototype = {
 
         this.load.setPreloadSprite(this.preloadBar);
 
-        this.load.onLoadComplete.add(this.onLoadComplete, this);
-
         this.load.image('square', 'assets/images/black-square.png');
         this.load.image('orangeSquare', 'assets/images/orange-square.png');
         this.load.image('triangle', 'assets/images/black-triangle.png');
@@ -23,8 +21,11 @@ tbsps.Preload.prototype = {
         this.load.audio('tap', 'assets/audio/tap.wav');
         this.load.audio('collect', 'assets/audio/collect-coin.wav');
         this.load.audio('failedGame', 'assets/audio/failed-game.wav');
+        this.load.audio('gameMusic', ['assets/audio/muzik.mp3', 'assets/audio/muzik.ogg']);
 
         this.load.bitmapFont('squareFont', 'assets/fonts/square8blackborder1/font.png', 'assets/fonts/square8blackborder1/font.fnt');
+
+        this.load.onLoadComplete.add(this.onLoadComplete, this);
 
     },
     create: function() {
@@ -34,7 +35,7 @@ tbsps.Preload.prototype = {
     },
     update: function() {
 
-        if(this.ready === true) {
+        if(this.cache.isSoundDecoded('gameMusic') && this.ready === true) {
             this.state.start('MainMenu');
         }
 
