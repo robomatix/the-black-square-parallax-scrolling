@@ -8,7 +8,9 @@ Scoreboard.prototype.constructor = Scoreboard;
 Scoreboard.prototype.show = function (score) {
     var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareGoogleButton, shareTwitterButton, shareTumblrButton;
 
-    this.game.score = score;
+    this.game.gameTitle = "The Black Square Parallax Scrolling";
+    this.game.urlGame = "http://le-carre-noir.net/the-black-square-parallax-scrolling/";
+    this.game.sharingMessage = score + " is my latest score on " + this.game.gameTitle + " !";
 
     bmd = this.game.add.bitmapData(this.game.width, this.game.height);
     bmd.ctx.fillStyle = '#000';
@@ -54,15 +56,11 @@ Scoreboard.prototype.show = function (score) {
     shareYourScoreText.x = this.game.width / 2 - (shareYourScoreText.textWidth / 2);
     this.add(shareYourScoreText);
 
-    shareGoogleButton = this.game.add.button(this.game.width / 2 - 60, 365, 'google', this.shareGoogleClicked, this, 1, 0, 0);
-    shareGoogleButton.anchor.setTo(0.5, 0.5);
-    this.add(shareGoogleButton);
-
-    shareTwitterButton = this.game.add.button(this.game.width / 2, 365, 'twitter', this.shareTwitterClicked, this, 1, 0, 0);
+    shareTwitterButton = this.game.add.button(this.game.width / 2 - 30, 365, 'twitter', this.shareTwitterClicked, this, 1, 0, 0);
     shareTwitterButton.anchor.setTo(0.5, 0.5);
     this.add(shareTwitterButton);
 
-    shareTumblrButton = this.game.add.button(this.game.width / 2 + 60, 365, 'tumblr', this.shareTumblrClicked, this, 1, 0, 0);
+    shareTumblrButton = this.game.add.button(this.game.width / 2 + 30, 365, 'tumblr', this.shareTumblrClicked, this, 1, 0, 0);
     shareTumblrButton.anchor.setTo(0.5, 0.5);
     this.add(shareTumblrButton);
 
@@ -92,27 +90,20 @@ Scoreboard.prototype.restart = function () {
 
 };
 
-
-Scoreboard.prototype.shareGoogleClicked = function () {
-
-    scoreShared = this.game.score;
-
-    window.open("https://twitter.com/intent/tweet?url=http://myurlgp.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
-
-};
-
 Scoreboard.prototype.shareTwitterClicked = function () {
 
-    scoreShared = this.game.score;
-
-    window.open("https://twitter.com/intent/tweet?url=http://myurltw.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
+    window.open("https://twitter.com/intent/tweet?url=" + this.game.urlGame + "&text=" + this.game.sharingMessage + "&hashtags=microgame,gaming,runner&via=LeCarreNoir", "", "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700");
 
 };
 
 Scoreboard.prototype.shareTumblrClicked = function () {
 
-    scoreShared = this.game.score;
+    tumblr_photo_source = "http://le-carre-noir.net/the-black-square-parallax-scrolling/images/the-black-square-parallax-scrolling-logo-500.png";
 
-    window.open("https://twitter.com/intent/tweet?url=http://myurltu.com&text=I+just+made+" + scoreShared + "+points+on+Black+Square+Parallax+!", "_blank"); // Opening the link on a blank page
+    tumblr_photo_caption = this.game.sharingMessage + ' Click on the picture to play to this gentle game...';
+
+    tumblrButtonHref = 'http://www.tumblr.com/share/photo?source=' + encodeURIComponent(tumblr_photo_source) + '&caption=' + encodeURIComponent(tumblr_photo_caption) + '&click_thru=' + encodeURIComponent(this.game.urlGame);
+
+    window.open(tumblrButtonHref, "", "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700");
 
 };
