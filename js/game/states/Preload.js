@@ -18,9 +18,9 @@ tbsps.Preload.prototype = {
         this.load.spritesheet('twitter', 'assets/images/rs-icons/twitter.png', 57, 57);
         this.load.spritesheet('tumblr', 'assets/images/rs-icons/tumblr.png', 57, 57);
 
-        this.load.audio('tap', 'assets/audio/tap.wav');
-        this.load.audio('collect', 'assets/audio/collect-coin.wav');
-        this.load.audio('failedGame', 'assets/audio/failed-game.wav');
+        this.load.audio('tap', ['assets/audio/tap.mp3', 'assets/audio/tap.ogg']);
+        this.load.audio('collect', ['assets/audio/collect-coin.mp3', 'assets/audio/collect-coin.ogg']);
+        this.load.audio('failedGame', ['assets/audio/failed-game.mp3', 'assets/audio/failed-game.ogg']);
         this.load.audio('gameMusic', ['assets/audio/muzik.mp3', 'assets/audio/muzik.ogg']);
 
         this.load.bitmapFont('squareFont', 'assets/fonts/square8blackborder1/font.png', 'assets/fonts/square8blackborder1/font.fnt');
@@ -35,7 +35,7 @@ tbsps.Preload.prototype = {
     },
     update: function() {
 
-        if(this.cache.isSoundDecoded('gameMusic') && this.ready === true) {
+        if(this.cache.isSoundDecoded('tap') && this.cache.isSoundDecoded('collect') && this.cache.isSoundDecoded('failedGame') && this.cache.isSoundDecoded('gameMusic') && this.ready === true) {
             this.state.start('MainMenu');
         }
 
