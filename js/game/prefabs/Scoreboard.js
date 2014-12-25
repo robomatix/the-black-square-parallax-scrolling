@@ -68,6 +68,9 @@ Scoreboard.prototype.show = function (score) {
     playAgainText.x = this.game.width / 2 - (playAgainText.textWidth / 2);
     playAgainText.inputEnabled = true;
     playAgainText.events.onInputDown.add(this.restart, this);
+    playAgainText.events.onInputOver.add(this.tintOver, this);
+    playAgainText.events.onInputOut.add(this.tintOut, this);
+
     this.add(playAgainText);
 
     this.tapSound = this.game.add.audio('tap');
@@ -87,6 +90,18 @@ Scoreboard.prototype.restart = function () {
     this.tapSound.play('', 0, true);
         this.game.state.start('Game', true, false);
 
+
+};
+
+Scoreboard.prototype.tintOver = function (item) {
+
+    item.tint = 0xFF0000;
+
+};
+
+Scoreboard.prototype.tintOut = function (item) {
+
+    item.tint = 0x000000;
 
 };
 
