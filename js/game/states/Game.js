@@ -2,11 +2,11 @@ tbsps.Game = function () {
     this.playerMinAngle = 0;
     this.playerMaxAngle = 18;
 
-    this.coinRate = 700;
+    this.coinRate = 500;
     this.coinTimer = 0;
 
-    this.enemyRate = 900;
-    this.enemyTimer = 0;
+    this.enemyRate = 700;
+    this.enemyTimer = 200;
 
     this.score = 0;
 
