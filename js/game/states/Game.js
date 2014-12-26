@@ -2,11 +2,11 @@ tbsps.Game = function () {
     this.playerMinAngle = 0;
     this.playerMaxAngle = 18;
 
-    this.coinRate = 500;
+    this.coinRate = 750;
     this.coinTimer = 0;
 
-    this.enemyRate = 700;
-    this.enemyTimer = 200;
+    this.enemyRate = 900;
+    this.enemyTimer = 500;
 
     this.score = 0;
 
@@ -80,7 +80,7 @@ tbsps.Game.prototype = {
     },
     update: function () {
         if (this.game.input.activePointer.isDown) {
-            this.player.body.velocity.y -= 25;
+            this.player.body.velocity.y -= 33;
 
             if (!this.tapSound.isPlaying) {
                 this.tapSound.play('', 0, true);
