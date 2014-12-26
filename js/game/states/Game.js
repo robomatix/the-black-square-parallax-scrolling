@@ -15,8 +15,6 @@ tbsps.Game = function () {
 tbsps.Game.prototype = {
     create: function () {
 
-        this.game.scoreboardLancher = false;
-
         this.backgroundTop1 = this.game.add.tileSprite(0, 0, this.game.width, 100, 'halfRound');
         this.backgroundTop1.alpha = 0.1;
         this.backgroundTop1.autoScroll(-50, 0);
