@@ -71,6 +71,17 @@ tbsps.Game.prototype = {
 
         this.scoreText = this.game.add.bitmapText(10, 10, 'squareFont', 'Score : 0', 48);
 
+        this.muteButton = this.game.add.button(this.game.world.width - 10, 10, 'mute', this.toggleSound, this, 3, 0);
+        this.muteButton.anchor.setTo(1, 0);
+        if (this.game.sound.mute) {
+
+            this.muteButton.setFrames(1, 2);
+            this.muteButton.frame = 2;
+
+        }
+
+
+
         this.tapSound = this.game.add.audio('tap');
         this.collectSound = this.game.add.audio('collect');
         this.gameMusic = this.game.add.audio('gameMusic');
@@ -194,6 +205,23 @@ tbsps.Game.prototype = {
             this.game.scoreboardLancher = true;
 
         }
+    },
+    toggleSound: function () {
+
+        if (this.game.sound.mute) {
+
+            this.muteButton.setFrames(3, 0);
+            this.muteButton.frame = 0;
+            this.game.sound.mute = false;
+
+        } else {
+
+            this.muteButton.setFrames(1, 2);
+            this.muteButton.frame = 2;
+            this.game.sound.mute = true;
+
+        }
+
     }
 
 };

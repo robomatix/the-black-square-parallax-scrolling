@@ -54,6 +54,15 @@ tbsps.MainMenu.prototype = {
         this.gameTitleText.x = this.game.width / 2 - this.gameTitleText.textWidth / 2;
         this.gameTitleText.y = this.game.height / 2 + this.startText.y - 128;
 
+        this.muteButton = this.game.add.button(this.game.world.width - 10, 10, 'mute', this.toggleSound, this, 3, 0);
+        this.muteButton.anchor.setTo(1, 0);
+        if (this.game.sound.mute) {
+
+            this.muteButton.setFrames(1, 2);
+            this.muteButton.frame = 2;
+
+        }
+
         this.tapSound = this.game.add.audio('tap');
 
 
@@ -64,5 +73,22 @@ tbsps.MainMenu.prototype = {
             this.game.state.start('Game');
 
         }
+    },
+    toggleSound: function () {
+
+        if (this.game.sound.mute) {
+
+            this.muteButton.setFrames(3, 0);
+            this.muteButton.frame = 0;
+            this.game.sound.mute = false;
+
+        } else {
+
+            this.muteButton.setFrames(1, 2);
+            this.muteButton.frame = 2;
+            this.game.sound.mute = true;
+
+        }
+
     }
 };
