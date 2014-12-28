@@ -15,6 +15,8 @@ tbsps.Game = function () {
 tbsps.Game.prototype = {
     create: function () {
 
+        this.game.scoreboardLancher = false;
+
         this.backgroundTop1 = this.game.add.tileSprite(0, 0, this.game.width, 100, 'halfRound');
         this.backgroundTop1.alpha = 0.1;
         this.backgroundTop1.autoScroll(-50, 0);
@@ -127,6 +129,15 @@ tbsps.Game.prototype = {
 
     },
     shutdown: function () {
+
+        this.backgroundTop1.destroy();
+        this.backgroundTop2.destroy();
+        this.backgroundTop3.destroy();
+        this.backgroundTopRotLeft1.destroy();
+        this.backgroundBottom1.destroy();
+        this.backgroundBottom2.destroy();
+        this.backgroundBottom3.destroy();
+        this.backgroundBottomRotLeft1.destroy();
 
         this.player.destroy();
         this.coins.destroy();
