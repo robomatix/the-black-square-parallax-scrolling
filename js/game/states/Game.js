@@ -179,12 +179,15 @@ tbsps.Game.prototype = {
     },
     coinHit: function (player, coin) {
 
-        this.collectSound.play('', 0, true);
 
         if (!this.game.scoreboardLancher) {
 
+            this.collectSound.play('', 0, true);
+
             this.score++;
+
             coin.kill();
+
             this.scoreText.text = 'Score : ' + this.score;
 
         }
