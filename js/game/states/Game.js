@@ -81,11 +81,10 @@ tbsps.Game.prototype = {
         }
 
 
-
         this.tapSound = this.game.add.audio('tap');
         this.collectSound = this.game.add.audio('collect');
         this.gameMusic = this.game.add.audio('gameMusic');
-        this.gameMusic.play('', 0,1, true);
+        this.gameMusic.play('', 0, 1, true);
 
 
     },
@@ -182,9 +181,13 @@ tbsps.Game.prototype = {
 
         this.collectSound.play('', 0, true);
 
-        this.score++;
-        coin.kill();
-        this.scoreText.text = 'Score : ' + this.score;
+        if (!this.game.scoreboardLancher) {
+
+            this.score++;
+            coin.kill();
+            this.scoreText.text = 'Score : ' + this.score;
+
+        }
 
     },
     enemyHit: function (player, enemy) {
