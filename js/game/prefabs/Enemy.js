@@ -1,5 +1,5 @@
 var Enemy = function(game, x, y, key, frame) {
-  key = 'orangeSquare';
+  key = 'square';
   Phaser.Sprite.call(this, game, x, y, key, frame);
 
   this.scale.setTo(1.25);
