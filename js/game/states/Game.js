@@ -2,11 +2,9 @@ tbsps.Game = function () {
     this.playerMinAngle = 0;
     this.playerMaxAngle = 18;
 
-    this.coinRate = 750;
-    this.coinTimer = 0;
+    this.coinRate = 333;
 
-    this.enemyRate = 900;
-    this.enemyTimer = 500;
+    this.enemyRate = 777;
 
     this.score = 0;
 
@@ -69,6 +67,13 @@ tbsps.Game.prototype = {
         this.coins = this.game.add.group();
         this.enemies = this.game.add.group();
 
+        /* add a timer to generate black squares
+         ******************************************************/
+        this.coinsGenerator = this.game.time.events.loop(this.coinRate, this.createCoin, this);
+        this.coinsGenerator.timer.start();
+        this.enemiesGenerator = this.game.time.events.loop(this.enemyRate, this.createEnemy, this);
+        this.enemiesGenerator.timer.start();
+
         this.scoreText = this.game.add.bitmapText(10, 10, 'squareFont', 'Score : 0', 48);
 
         this.muteButton = this.game.add.button(this.game.world.width - 10, 10, 'mute', this.toggleSound, this, 3, 0);
@@ -113,15 +118,12 @@ tbsps.Game.prototype = {
             }
         }
 
-        if (this.coinTimer < this.game.time.now) {
-            this.createCoin();
-            this.coinTimer = this.game.time.now + this.coinRate;
-        }
-
-        if (this.enemyTimer < this.game.time.now) {
-            this.createEnemy();
-            this.enemyTimer = this.game.time.now + this.enemyRate;
-        }
+        /*
+         if (this.enemyTimer < this.game.time.now) {
+         this.createEnemy();
+         this.enemyTimer = this.game.time.now + this.enemyRate;
+         }
+         */
 
         this.game.physics.arcade.overlap(this.player, this.coins, this.coinHit, null, this);
         this.game.physics.arcade.overlap(this.player, this.enemies, this.enemyHit, null, this);
@@ -138,12 +140,15 @@ tbsps.Game.prototype = {
         this.backgroundBottom3.destroy();
         this.backgroundBottomRotLeft1.destroy();
 
+        this.coinsGenerator.timer.destroy();
+        this.enemiesGenerator.timer.destroy();
+
         this.player.destroy();
         this.coins.destroy();
         this.enemies.destroy();
+
         this.score = 0;
-        this.coinTimer = 0;
-        this.enemyTimer = 0;
+
         this.scoreboardLancher = false;
 
     },
@@ -154,8 +159,10 @@ tbsps.Game.prototype = {
 
         var coin = this.coins.getFirstExists(false);
         if (!coin) {
+
             coin = new Coin(this.game, 0, 0);
             this.coins.add(coin);
+
         }
 
         coin.reset(x, y);
@@ -195,6 +202,10 @@ tbsps.Game.prototype = {
     },
     enemyHit: function (player, enemy) {
 
+        this.coinsGenerator.timer.stop();
+        this.enemiesGenerator.timer.stop();
+
+
         this.gameMusic.stop();
 
         player.body.velocity.x = 0;
@@ -212,8 +223,6 @@ tbsps.Game.prototype = {
         this.enemies.setAll('body.velocity.x', 0);
         this.coins.setAll('body.velocity.x', 0);
 
-        this.enemyTimer = Number.MAX_VALUE;
-        this.coinTimer = Number.MAX_VALUE;
         if (!this.game.scoreboardLancher) {
             var scoreboard = new Scoreboard(this.game);
             scoreboard.show(this.score);
