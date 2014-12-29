@@ -5,37 +5,38 @@ tbsps.MainMenu.prototype = {
 
         this.backgroundTop1 = this.game.add.tileSprite(0, 0, this.game.width, 100, 'halfRound');
         this.backgroundTop1.alpha = 0.1;
-        this.backgroundTop1.autoScroll(-50, 0);
+        this.backgroundTop1.autoScroll(-25, 0);
 
         this.backgroundTop2 = this.game.add.tileSprite(0, -50, this.game.width, 100, 'halfRound');
         this.backgroundTop2.alpha = 0.3;
-        this.backgroundTop2.autoScroll(-100, 0);
+        this.backgroundTop2.autoScroll(-50, 0);
 
         this.backgroundTop3 = this.game.add.tileSprite(0, -75, this.game.width, 100, 'halfRound');
         this.backgroundTop3.alpha = 0.5;
-        this.backgroundTop3.autoScroll(-150, 0);
+        this.backgroundTop3.autoScroll(-75, 0);
 
         this.backgroundTopRotLeft1 = this.game.add.tileSprite(-10, 0, this.game.width, 99, 'halfRound');
         this.backgroundTopRotLeft1.rotation = -0.1;
         this.backgroundTopRotLeft1.alpha = 0.2;
-        this.backgroundTopRotLeft1.autoScroll(-75, 0);
+        this.backgroundTopRotLeft1.autoScroll(-38, 0);
 
-        this.backgroundBottom1 = this.game.add.tileSprite(0, this.game.height-150, this.game.width, 150, 'triangle');
+
+        this.backgroundBottom1 = this.game.add.tileSprite(0, this.game.height - 150, this.game.width, 150, 'triangle');
         this.backgroundBottom1.alpha = 0.1;
-        this.backgroundBottom1.autoScroll(-50, 0);
+        this.backgroundBottom1.autoScroll(-25, 0);
 
-        this.backgroundBottom2 = this.game.add.tileSprite(0, this.game.height-75, this.game.width, 150, 'triangle');
+        this.backgroundBottom2 = this.game.add.tileSprite(0, this.game.height - 75, this.game.width, 75, 'triangle');
         this.backgroundBottom2.alpha = 0.3;
-        this.backgroundBottom2.autoScroll(-100, 0);
+        this.backgroundBottom2.autoScroll(-50, 0);
 
-        this.backgroundBottom3 = this.game.add.tileSprite(0, this.game.height-50, this.game.width, 150, 'triangle');
+        this.backgroundBottom3 = this.game.add.tileSprite(0, this.game.height - 50, this.game.width, 50, 'triangle');
         this.backgroundBottom3.alpha = 0.5;
-        this.backgroundBottom3.autoScroll(-150, 0);
+        this.backgroundBottom3.autoScroll(-75, 0);
 
-        this.backgroundRotLeft1 = this.game.add.tileSprite(0, this.game.height-150, this.game.width, 150, 'triangle');
-        this.backgroundRotLeft1.rotation = 0.1;
-        this.backgroundRotLeft1.alpha = 0.2;
-        this.backgroundRotLeft1.autoScroll(-75, 0);
+        this.backgroundBottomRotLeft1 = this.game.add.tileSprite(0, this.game.height - 150, this.game.width, 148, 'triangle');
+        this.backgroundBottomRotLeft1.rotation = 0.1;
+        this.backgroundBottomRotLeft1.alpha = 0.2;
+        this.backgroundBottomRotLeft1.autoScroll(-38, 0);
 
         this.teaserText1 = this.game.add.bitmapText(0,0, 'squareFont', 'Collect the black squares !', 69);
         this.teaserText1.x = this.game.width / 2 - this.teaserText1.textWidth / 2;
