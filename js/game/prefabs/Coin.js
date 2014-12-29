@@ -4,6 +4,7 @@ var Coin = function(game, x, y, key, frame) {
 
   this.scale.setTo(1);
   this.anchor.setTo(0.5);
+  this.tint = 0x000000;
   this.smoothed=false;
 
   this.game.physics.arcade.enableBody(this);
