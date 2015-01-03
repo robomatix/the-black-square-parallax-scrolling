@@ -10,7 +10,7 @@ tbsps.Preload.prototype = {
 
         this.load.setPreloadSprite(this.preloadBar);
 
-        this.load.image('square', 'assets/images/square.png');
+        this.load.image('square', 'assets/images/white-square-20.png');
         this.load.image('triangle', 'assets/images/black-triangle.png');
         this.load.image('halfRound', 'assets/images/black-half-round.png');
 

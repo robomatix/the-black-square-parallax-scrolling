@@ -54,7 +54,7 @@ tbsps.Game.prototype = {
 
         this.player = this.add.sprite(200, this.game.height / 2, 'square');
         this.player.anchor.setTo(0.5);
-        this.player.scale.setTo(2);
+        this.player.scale.setTo(2.8);
         this.player.tint = 0x000000;
         this.player.smoothed = false;
 
