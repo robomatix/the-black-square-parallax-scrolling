@@ -6,11 +6,15 @@ Scoreboard.prototype = Object.create(Phaser.Group.prototype);
 Scoreboard.prototype.constructor = Scoreboard;
 
 Scoreboard.prototype.show = function (score) {
-    var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareGoogleButton, shareTwitterButton, shareTumblrButton, playSlowMotionButton, playFastButton ;
+    var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareGoogleButton, shareTwitterButton, shareTumblrButton, playSlowMotionButton, playFastButton;
 
     this.game.gameTitle = "The Black Square Parallax Scrolling";
     this.game.urlGame = "http://le-carre-noir.net/the-black-square-parallax-scrolling/";
-    this.game.sharingMessage = score + " is my latest score on " + this.game.gameTitle + " !";
+    if (this.game.slowOrFastGame === 'slow') {
+        this.game.sharingMessage = "My latest score on " + this.game.gameTitle + " in slowmotion mode : " + score;
+    } else {
+        this.game.sharingMessage = "My latest score on " + this.game.gameTitle + " in fast mode : " + score;
+    }
 
     bmd = this.game.add.bitmapData(this.game.width, this.game.height);
     bmd.ctx.fillStyle = '#000';
@@ -22,12 +26,27 @@ Scoreboard.prototype.show = function (score) {
     this.add(background);
 
     var isNewHighScore = false;
-    var highscore = localStorage.getItem('highscore');
 
-    if (!highscore || highscore < score) {
-        isNewHighScore = true;
-        highscore = score;
-        localStorage.setItem('highscore', highscore);
+    if (this.game.slowOrFastGame === 'slow') {
+
+        var highscore = localStorage.getItem('highscoreslow');
+
+        if (!highscore || highscore < score) {
+            isNewHighScore = true;
+            highscore = score;
+            localStorage.setItem('highscoreslow', highscore);
+        }
+
+    }else{
+
+        var highscore = localStorage.getItem('highscorefast');
+
+        if (!highscore || highscore < score) {
+            isNewHighScore = true;
+            highscore = score;
+            localStorage.setItem('highscorefast', highscore);
+        }
+
     }
 
     this.y = -this.game.height;
@@ -44,11 +63,18 @@ Scoreboard.prototype.show = function (score) {
     this.add(gameoverText);
     gameoverText.tint = 0xff0000;
 
+
     scoreText = this.game.add.bitmapText(0, 200, 'squareFont', 'Your Score : ' + score, 48);
     scoreText.x = this.game.width / 2 - (scoreText.textWidth / 2);
     this.add(scoreText);
 
-    highScoreText = this.game.add.bitmapText(0, 250, 'squareFont', 'Your High Score : ' + highscore, 48);
+    if (this.game.slowOrFastGame === 'slow') {
+        highScoreText = this.game.add.bitmapText(0, 250, 'squareFont', 'Your High Score in slowmotion mode : ' + highscore, 48);
+    } else {
+        highScoreText = this.game.add.bitmapText(0, 250, 'squareFont', 'Your High Score in fast and vicious mode : ' + highscore, 48);
+    }
+
+
     highScoreText.x = this.game.width / 2 - (highScoreText.textWidth / 2);
     this.add(highScoreText);
 
@@ -117,7 +143,7 @@ Scoreboard.prototype.shareTumblrClicked = function () {
 
     tumblr_photo_source = "http://le-carre-noir.net/the-black-square-parallax-scrolling/images/the-black-square-parallax-scrolling-logo-500.png";
 
-    tumblr_photo_caption = this.game.sharingMessage + ' Click on the picture to play to this gentle game...';
+    tumblr_photo_caption = this.game.sharingMessage + ' Click on the picture to play to this game...';
 
     tumblrButtonHref = 'http://www.tumblr.com/share/photo?source=' + encodeURIComponent(tumblr_photo_source) + '&caption=' + encodeURIComponent(tumblr_photo_caption) + '&click_thru=' + encodeURIComponent(this.game.urlGame);
 
