@@ -17,7 +17,9 @@ tbsps.Preload.prototype = {
         this.load.spritesheet('twitter', 'assets/images/rs-icons/twitter.png', 57, 57);
         this.load.spritesheet('tumblr', 'assets/images/rs-icons/tumblr.png', 57, 57);
 
-        this.load.spritesheet('mute', 'assets/images/mute-button.png', 70, 50);
+        this.load.spritesheet('play-slowmotion', 'assets/images/btn-play-slow-motion.png', 640, 66);
+        this.load.spritesheet('play-fast', 'assets/images/btn-play-fast-and-vicious.png', 800, 66);
+        this.load.spritesheet('mute', 'assets/images/btn-mute.png', 70, 50);
 
         this.load.audio('tap', ['assets/audio/tap.mp3', 'assets/audio/tap.ogg']);
         this.load.audio('collect', ['assets/audio/collect-coin.mp3', 'assets/audio/collect-coin.ogg']);

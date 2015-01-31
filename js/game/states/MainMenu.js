@@ -47,13 +47,20 @@ tbsps.MainMenu.prototype = {
         this.teaserText2.x = this.game.width / 2 - this.teaserText2.textWidth / 2;
         this.teaserText2.y = 94;
 
+        /*
         this.startText = this.game.add.bitmapText(0,0, 'squareFont', 'Left click on the screen to start', 69);
         this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
         this.startText.y = this.game.height / 2 + this.startText.textHeight / 2;
+        */
+        this.playSlowMotionButton = this.game.add.button(this.game.world.centerX, this.game.world.centerY, 'play-slowmotion', this.playSlow, this, 1, 0);
+        this.playSlowMotionButton.anchor.setTo(0.5, 0.5);
+
+        this.playFastButton = this.game.add.button(this.game.world.centerX, this.game.world.centerY + 120, 'play-fast', this.playFast, this, 1, 0);
+        this.playFastButton.anchor.setTo(0.5, 0.5);
 
         this.gameTitleText = this.game.add.bitmapText(0,0, 'squareFont', 'The black square parallax scrolling', 69);
         this.gameTitleText.x = this.game.width / 2 - this.gameTitleText.textWidth / 2;
-        this.gameTitleText.y = this.game.height / 2 + this.startText.y - 128;
+        this.gameTitleText.y = this.game.height / 2 + this.playFastButton.y - 128;
 
         this.muteButton = this.game.add.button(this.game.world.width - 10, 10, 'mute', this.toggleSound, this, 3, 0);
         this.muteButton.anchor.setTo(1, 0);
@@ -69,11 +76,7 @@ tbsps.MainMenu.prototype = {
 
     },
     update: function() {
-        if(this.game.input.activePointer.justPressed()) {
-            this.tapSound.play('', 0, true);
-            this.game.state.start('Game');
 
-        }
     },
     toggleSound: function () {
 
@@ -91,5 +94,15 @@ tbsps.MainMenu.prototype = {
 
         }
 
+    },
+    playSlow: function () {
+        this.tapSound.play('', 0, true);
+        this.game.state.start('Game');
+        console.log('Slow');
+    },
+    playFast: function () {
+        this.tapSound.play('', 0, true);
+        this.game.state.start('Game');
+        console.log('Fast');
     }
 };
