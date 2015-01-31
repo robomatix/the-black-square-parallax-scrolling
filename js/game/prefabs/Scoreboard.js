@@ -6,7 +6,7 @@ Scoreboard.prototype = Object.create(Phaser.Group.prototype);
 Scoreboard.prototype.constructor = Scoreboard;
 
 Scoreboard.prototype.show = function (score) {
-    var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareGoogleButton, shareTwitterButton, shareTumblrButton;
+    var bmd, background, gameoverText, scoreText, highScoreText, newHighScoreText, playAgainText, shareYourScoreText, shareGoogleButton, shareTwitterButton, shareTumblrButton, playSlowMotionButton, playFastButton ;
 
     this.game.gameTitle = "The Black Square Parallax Scrolling";
     this.game.urlGame = "http://le-carre-noir.net/the-black-square-parallax-scrolling/";
@@ -64,14 +64,13 @@ Scoreboard.prototype.show = function (score) {
     shareTumblrButton.anchor.setTo(0.5, 0.5);
     this.add(shareTumblrButton);
 
-    playAgainText = this.game.add.bitmapText(0, 420, 'squareFont', 'Click here to play again !', 64);
-    playAgainText.x = this.game.width / 2 - (playAgainText.textWidth / 2);
-    playAgainText.inputEnabled = true;
-    playAgainText.events.onInputDown.add(this.restart, this);
-    playAgainText.events.onInputOver.add(this.tintOver, this);
-    playAgainText.events.onInputOut.add(this.tintOut, this);
+    playSlowMotionButton = this.game.add.button(this.game.world.centerX, 500, 'play-slowmotion', this.playSlow, this, 1, 0);
+    playSlowMotionButton.anchor.setTo(0.5, 0.5);
+    this.add(playSlowMotionButton);
 
-    this.add(playAgainText);
+    playFastButton = this.game.add.button(this.game.world.centerX, 640, 'play-fast', this.playFast, this, 1, 0);
+    playFastButton.anchor.setTo(0.5, 0.5);
+    this.add(playFastButton);
 
     this.tapSound = this.game.add.audio('tap');
     this.failedGameSound = this.game.add.audio('failedGame');
@@ -84,13 +83,16 @@ Scoreboard.prototype.show = function (score) {
 
 };
 
-Scoreboard.prototype.restart = function () {
-
-
+Scoreboard.prototype.playSlow = function () {
     this.tapSound.play('', 0, true);
-        this.game.state.start('Game', true, false);
+    this.game.state.start('Game');
+    this.game.slowOrFastGame = 'slow';
+};
 
-
+Scoreboard.prototype.playFast = function () {
+    this.tapSound.play('', 0, true);
+    this.game.state.start('Game');
+    this.game.slowOrFastGame = 'fast';
 };
 
 Scoreboard.prototype.tintOver = function (item) {

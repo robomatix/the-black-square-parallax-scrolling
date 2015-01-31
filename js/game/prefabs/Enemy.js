@@ -20,9 +20,14 @@ var Enemy = function(game, x, y, key, frame) {
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);
 Enemy.prototype.constructor = Enemy;
 
-Enemy.prototype.onRevived = function() {
+Enemy.prototype.onRevived = function(velocityX) {
 
-  this.body.velocity.x = -222;
+
+};
+
+Enemy.prototype.setVelocityX = function(velocityX) {
+
+    this.body.velocity.x = -velocityX;
 
 };
 

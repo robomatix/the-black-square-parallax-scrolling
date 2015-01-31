@@ -25,11 +25,16 @@ Coin.prototype.constructor = Coin;
 
 Coin.prototype.onRevived = function() {
 
-  this.body.velocity.x = -88;
 
 };
 
 Coin.prototype.onKilled = function() {
+
+};
+
+Coin.prototype.setVelocityX = function(velocityX) {
+
+    this.body.velocity.x = -velocityX;
 
 };
 

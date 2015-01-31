@@ -3,16 +3,53 @@ tbsps.Game = function () {
     this.playerMinAngle = 0;
     this.playerMaxAngle = 18;
 
-    this.coinRate = 333;
-
-    this.enemyRate = 777;
-
     this.score = 0;
+
+    this.coinRateSlow = 333;
+    this.coinVelocityXMinSlow = 11;
+    this.coinVelocityXMaxSlow = 111;
+    this.enemyRateSlow = 2222;
+    this.enemyVelocityXMinSlow = 111;
+    this.enemyVelocityXMaxslow = 222;
+
+
+
+    this.coinRateFast = 69;
+    this.coinVelocityXMinFast = 260;
+    this.coinVelocityXMaxFast = 700;
+    this.enemyRateFast = 1111;
+    this.enemyVelocityXMinFast = 222;
+    this.enemyVelocityXMaxFast = 666;
+
+
+
 
 };
 
 tbsps.Game.prototype = {
     create: function () {
+
+        if (this.game.slowOrFastGame === 'slow') {
+
+            this.coinRate = this.coinRateSlow;
+            this.coinVelocityXMin = this.coinVelocityXMinSlow;
+            this.coinVelocityXMax = this.coinVelocityXMaxSlow;
+
+            this.enemyRate = this.enemyRateSlow;
+            this.enemyVelocityXMin = this.enemyVelocityXMinSlow;
+            this.enemyVelocityXMax = this.enemyVelocityXMaxslow;
+
+        } else {
+
+            this.coinRate = this.coinRateFast;
+            this.coinVelocityXMin = this.coinVelocityXMinFast;
+            this.coinVelocityXMax = this.coinVelocityXMaxFast;
+
+            this.enemyRate = this.enemyRateFast;
+            this.enemyVelocityXMin = this.enemyVelocityXMinFast;
+            this.enemyVelocityXMax = this.enemyVelocityXMaxFast;
+
+        }
 
         this.game.scoreboardLancher = false;
 
@@ -158,6 +195,7 @@ tbsps.Game.prototype = {
 
         var x = this.game.width;
         var y = this.game.rnd.integerInRange(50, this.game.world.height - 50);
+        var coinVelocityX = this.game.rnd.integerInRange(this.coinVelocityXMin, this.coinVelocityXMax);
 
         var coin = this.coins.getFirstExists(false);
         if (!coin) {
@@ -169,13 +207,14 @@ tbsps.Game.prototype = {
 
         coin.reset(x, y);
         coin.revive();
-        return coin;
+        coin.setVelocityX(coinVelocityX);
 
     },
     createEnemy: function () {
 
         var x = this.game.width;
         var y = this.game.rnd.integerInRange(50, this.game.world.height - 50);
+        var enemyVelocityX = this.game.rnd.integerInRange(this.enemyVelocityXMin, this.enemyVelocityXMax);
 
         var enemy = this.enemies.getFirstExists(false);
         if (!enemy) {
@@ -184,6 +223,7 @@ tbsps.Game.prototype = {
         }
         enemy.reset(x, y);
         enemy.revive();
+        enemy.setVelocityX(enemyVelocityX);
 
     },
     coinHit: function (player, coin) {
