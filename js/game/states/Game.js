@@ -15,9 +15,9 @@ tbsps.Game = function () {
 
 
     this.coinRateFast = 33;
-    this.coinAccelerationXMinFast = 130;
-    this.coinAccelerationXMaxFast = 555;
-    this.enemyRateFast = 800;
+    this.coinAccelerationXMinFast = 88;
+    this.coinAccelerationXMaxFast = 777;
+    this.enemyRateFast = 750;
     this.enemyVelocityXMinFast = 111;
     this.enemyVelocityXMaxFast = 333;
 
