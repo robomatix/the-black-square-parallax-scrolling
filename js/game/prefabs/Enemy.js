@@ -25,9 +25,9 @@ Enemy.prototype.onRevived = function(velocityX) {
 
 };
 
-Enemy.prototype.setVelocityX = function(velocityX) {
+Enemy.prototype.setAccelerationX = function(velocityX) {
 
-    this.body.velocity.x = -velocityX;
+    this.body.acceleration.x = -velocityX;
 
 };
 

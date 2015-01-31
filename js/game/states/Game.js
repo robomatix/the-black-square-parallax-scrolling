@@ -5,21 +5,21 @@ tbsps.Game = function () {
 
     this.score = 0;
 
-    this.coinRateSlow = 333;
-    this.coinVelocityXMinSlow = 11;
-    this.coinVelocityXMaxSlow = 111;
-    this.enemyRateSlow = 2222;
-    this.enemyVelocityXMinSlow = 111;
-    this.enemyVelocityXMaxslow = 222;
+    this.coinRateSlow = 88;
+    this.coinAccelerationXMinSlow = 1;
+    this.coinAccelerationXMaxSlow = 18;
+    this.enemyRateSlow = 750;
+    this.enemyVelocityXMinSlow = 16;
+    this.enemyVelocityXMaxSlow = 48;
 
 
 
-    this.coinRateFast = 69;
-    this.coinVelocityXMinFast = 260;
-    this.coinVelocityXMaxFast = 700;
-    this.enemyRateFast = 1111;
-    this.enemyVelocityXMinFast = 222;
-    this.enemyVelocityXMaxFast = 666;
+    this.coinRateFast = 33;
+    this.coinAccelerationXMinFast = 130;
+    this.coinAccelerationXMaxFast = 555;
+    this.enemyRateFast = 800;
+    this.enemyVelocityXMinFast = 111;
+    this.enemyVelocityXMaxFast = 333;
 
 
 
@@ -32,22 +32,22 @@ tbsps.Game.prototype = {
         if (this.game.slowOrFastGame === 'slow') {
 
             this.coinRate = this.coinRateSlow;
-            this.coinVelocityXMin = this.coinVelocityXMinSlow;
-            this.coinVelocityXMax = this.coinVelocityXMaxSlow;
+            this.coinAccelerationXMin = this.coinAccelerationXMinSlow;
+            this.coinAccelerationXMax = this.coinAccelerationXMaxSlow;
 
             this.enemyRate = this.enemyRateSlow;
-            this.enemyVelocityXMin = this.enemyVelocityXMinSlow;
-            this.enemyVelocityXMax = this.enemyVelocityXMaxslow;
+            this.enemyAccelerationXMin = this.enemyVelocityXMinSlow;
+            this.enemyAccelerationXMax = this.enemyVelocityXMaxSlow;
 
         } else {
 
             this.coinRate = this.coinRateFast;
-            this.coinVelocityXMin = this.coinVelocityXMinFast;
-            this.coinVelocityXMax = this.coinVelocityXMaxFast;
+            this.coinAccelerationXMin = this.coinAccelerationXMinFast;
+            this.coinAccelerationXMax = this.coinAccelerationXMaxFast;
 
             this.enemyRate = this.enemyRateFast;
-            this.enemyVelocityXMin = this.enemyVelocityXMinFast;
-            this.enemyVelocityXMax = this.enemyVelocityXMaxFast;
+            this.enemyAccelerationXMin = this.enemyVelocityXMinFast;
+            this.enemyAccelerationXMax = this.enemyVelocityXMaxFast;
 
         }
 
@@ -89,7 +89,7 @@ tbsps.Game.prototype = {
         this.backgroundBottomRotLeft1.autoScroll(-38, 0);
 
 
-        this.player = this.add.sprite(200, this.game.height / 2, 'square');
+        this.player = this.add.sprite(300, this.game.height / 2, 'square');
         this.player.anchor.setTo(0.5);
         this.player.scale.setTo(2.8);
         this.player.tint = 0x000000;
@@ -195,7 +195,7 @@ tbsps.Game.prototype = {
 
         var x = this.game.width;
         var y = this.game.rnd.integerInRange(50, this.game.world.height - 50);
-        var coinVelocityX = this.game.rnd.integerInRange(this.coinVelocityXMin, this.coinVelocityXMax);
+        var coinAccelerationX = this.game.rnd.integerInRange(this.coinAccelerationXMin, this.coinAccelerationXMax);
 
         var coin = this.coins.getFirstExists(false);
         if (!coin) {
@@ -207,14 +207,14 @@ tbsps.Game.prototype = {
 
         coin.reset(x, y);
         coin.revive();
-        coin.setVelocityX(coinVelocityX);
+        coin.setAccelerationX(coinAccelerationX);
 
     },
     createEnemy: function () {
 
         var x = this.game.width;
         var y = this.game.rnd.integerInRange(50, this.game.world.height - 50);
-        var enemyVelocityX = this.game.rnd.integerInRange(this.enemyVelocityXMin, this.enemyVelocityXMax);
+        var enemyAccelerationX = this.game.rnd.integerInRange(this.enemyAccelerationXMin, this.enemyAccelerationXMax);
 
         var enemy = this.enemies.getFirstExists(false);
         if (!enemy) {
@@ -223,7 +223,7 @@ tbsps.Game.prototype = {
         }
         enemy.reset(x, y);
         enemy.revive();
-        enemy.setVelocityX(enemyVelocityX);
+        enemy.setAccelerationX(enemyAccelerationX);
 
     },
     coinHit: function (player, coin) {
@@ -243,6 +243,7 @@ tbsps.Game.prototype = {
 
     },
     enemyHit: function (player, enemy) {
+        if (!this.game.scoreboardLancher) {
 
         this.coinsGenerator.timer.stop();
         this.enemiesGenerator.timer.stop();
@@ -265,7 +266,7 @@ tbsps.Game.prototype = {
         this.enemies.setAll('body.velocity.x', 0);
         this.coins.setAll('body.velocity.x', 0);
 
-        if (!this.game.scoreboardLancher) {
+
             var scoreboard = new Scoreboard(this.game);
             scoreboard.show(this.score);
             this.game.scoreboardLancher = true;

@@ -4,7 +4,6 @@ var Coin = function(game, x, y, key, frame) {
   
   Phaser.Sprite.call(this, game, x, y, key, frame);
 
-  this.scale.setTo(1);
   this.anchor.setTo(0.5);
   this.tint = 0x000000;
   this.smoothed=false;
@@ -32,9 +31,9 @@ Coin.prototype.onKilled = function() {
 
 };
 
-Coin.prototype.setVelocityX = function(velocityX) {
+Coin.prototype.setAccelerationX = function(velocityX) {
 
-    this.body.velocity.x = -velocityX;
+    this.body.acceleration.x = -velocityX;
 
 };
 
